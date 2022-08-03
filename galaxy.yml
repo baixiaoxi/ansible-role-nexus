@@ -1,0 +1,17 @@
+authors:
+- louis <ibaixiaoxi@qq.com>
+build_ignore:
+- '*.gitkeep'
+dependencies: {}
+description: Sonatype Nexus roles
+issues: https://github.com/baixiaoxi/ansible-role-nexus/issues
+license:
+- GPL-2.0-or-later
+license_file: ''
+name: nexus
+namespace: baixiaoxi
+readme: README.md
+repository: https://github.com/baixiaoxi/ansible-role-nexus
+tags:
+- nexus
+version: 1.0.0
