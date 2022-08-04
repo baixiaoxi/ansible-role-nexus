@@ -2,7 +2,10 @@
 - name: Apply configuration files
   template:
     src: "{{ template_item }}.j2"
-    dest: "{{ install_dir }}/bin/{{ template_item }}"
+    dest: "{{ install_dir }}/current/bin/{{ template_item }}"
+    owner: nexus
+    group: nexus
+    mode: u=rwX,g=rX,o-rwX
   loop:
     - nexus.properties
     - nexus.vmoptions
@@ -14,9 +17,9 @@
 
 - name: Wait until service is up and running
   uri:
-    url: "http://{{ inventory_hostname }}:8081/service/rest/v1/status"
+    url: "{{ nexus_external_url }}/service/rest/v1/status"
     method: GET
-    staus_code: 200
+    status_code: 200
   register: service_state
   until: service_state.status == 200
   retries: 12

@@ -1,2 +1,2 @@
----
-# defaults file for install
+nexus_domain: localhost
+nexus_external_url: "http://localhost:8081"

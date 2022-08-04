@@ -9,13 +9,12 @@ release_url:
   Win32NT: https://download.sonatype.com/nexus/3/latest-win64.zip
   OSX: https://download.sonatype.com/nexus/3/latest-mac.tgz
 
-
 required_pkgs:
   apt:
-    - openjdk-11-jre
+    - openjdk-8-jre
   yum:
-    - java-11-openjdk
+    - java-1.8.0-openjdk
   dnf:
-    - java-11-openjdk
+    - java-1.8.0-openjdk
 
 

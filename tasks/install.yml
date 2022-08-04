@@ -3,22 +3,27 @@
   file:
     path: "{{ install_dir }}"
     state: directory
+    mode: u=rwX,g=rX,o-rwX
+    owner: nexus
+    group: nexus
 
 - name: Extract packages
   unarchive:
     src: "{{ release_url[ansible_system] }}"
     dest: "{{ install_dir }}"
     remote_src: yes
-    owner: nexus
-    group: root
-    mode: u=rwX,g=rX,o-rwX
+    list_files: yes
     creates: "{{ install_dir }}/sonatype-work"
   register: extracted_package
+  become: yes
+  become_user: nexus
 
 - name: Set current version symlink
   file:
-    path: "{{ install_dir }}/{{ extracted_package.files | map('dirname') | map('regex_search', '^nexus-\d+(\.\d+)+(-\d+)?$') | first }}"
+    src: "{{ install_dir }}/{{ extracted_package.files | map('dirname') | map('regex_search', item) | select() | first }}"
     dest: "{{ install_dir }}/current"
-    state: link
+    mode: u=rwX,g=rX,o-rwX
     owner: nexus
-    group: root
+    group: nexus
+    state: link
+  with_items: '^nexus-\d+(\.\d+)+(-\d+)?$'
