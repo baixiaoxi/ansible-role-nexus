@@ -1,0 +1,23 @@
+---
+# 清理nexus数据
+- name: "Purge Nexus"
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+  - "{{ nexus_data_dir }}"
+  - "{{ nexus_installation_dir }}/nexus-{{ nexus_version }}"
+  - "{{ nexus_restore_log }}"
+# - "{{ nexus_backup_dir }}" # Optional
+
+# 停止nexus服务
+- name: "service stop"
+  service:
+    name: nexus
+    state: stopped
+
+# 卸载nexus包
+- name: "remove nexus package"
+  package:
+    name: nexus
+    state: absent

@@ -3,16 +3,16 @@
 -XX:MaxDirectMemorySize=2703m
 -XX:+UnlockDiagnosticVMOptions
 -XX:+LogVMOutput
--XX:LogFile=../sonatype-work/nexus3/log/jvm.log
+-XX:LogFile={{ nexus_data_dir }}/log/jvm.log
 -XX:-OmitStackTraceInFastThrow
 -Djava.net.preferIPv4Stack=true
 -Dkaraf.home=.
 -Dkaraf.base=.
 -Dkaraf.etc=etc/karaf
 -Djava.util.logging.config.file=etc/karaf/java.util.logging.properties
--Dkaraf.data=../sonatype-work/nexus3
+-Dkaraf.data={{ nexus_data_dir }}
 -Dkaraf.log=../sonatype-work/nexus3/log
--Djava.io.tmpdir=../sonatype-work/nexus3/tmp
+-Djava.io.tmpdir={{ nexus_tmp_dir }}
 -Dkaraf.startLocalConsole=false
 -Djdk.tls.ephemeralDHKeySize=2048
 #
@@ -20,8 +20,8 @@
 #
 # --add-reads=java.xml=java.logging
 # --add-exports=java.base/org.apache.karaf.specs.locator=java.xml,ALL-UNNAMED
-# --patch-module java.base=${KARAF_HOME}/lib/endorsed/org.apache.karaf.specs.locator-4.3.2.jar
-# --patch-module java.xml=${KARAF_HOME}/lib/endorsed/org.apache.karaf.specs.java.xml-4.3.2.jar
+# --patch-module java.base=${KARAF_HOME}/lib/endorsed/org.apache.karaf.specs.locator-4.3.6.jar
+# --patch-module java.xml=${KARAF_HOME}/lib/endorsed/org.apache.karaf.specs.java.xml-4.3.6.jar
 # --add-opens java.base/java.security=ALL-UNNAMED
 # --add-opens java.base/java.net=ALL-UNNAMED
 # --add-opens java.base/java.lang=ALL-UNNAMED
@@ -38,3 +38,4 @@
 # comment out this vmoption when using Java9+
 #
 -Djava.endorsed.dirs=lib/endorsed
+-Duser.timezone={{ nexus_timezone }}

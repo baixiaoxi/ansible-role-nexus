@@ -1,0 +1,6 @@
+---
+# 用户初始化
+- include: call_script.yml
+  vars:
+    script_name: setup_user
+    args: "{{ item }}"
